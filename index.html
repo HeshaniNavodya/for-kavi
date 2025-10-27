@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Message to Kavi</title>
+    <title>A Message to Kavi - Interactive</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
     <style>
         /* General Styles */
         body {
@@ -27,7 +30,7 @@
             border: 1px solid #ddd;
         }
         h1 {
-            color: #1e88e5; /* A sincere blue */
+            color: #1e88e5;
             text-align: center;
             font-size: 1.8em;
             margin-bottom: 25px;
@@ -47,33 +50,32 @@
         }
         .thanks {
             font-weight: bold;
-            color: #27ae60; /* Green for gratitude */
+            color: #27ae60;
         }
         .date {
             font-size: 1.2em;
             font-weight: bold;
-            color: #34495e; /* Darker tone */
+            color: #34495e;
             animation: fadeIn 3s ease-out;
             display: block;
             text-align: center;
             margin-bottom: 25px;
         }
 
-        /* Animation for the 'Miss Him' Box */
+        /* Animation for the 'Miss Him' Box (Pulse retained) */
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 5px rgba(255, 105, 180, 0.4); }
-            50% { transform: scale(1.01); box-shadow: 0 0 10px rgba(255, 105, 180, 0.7); }
-            100% { transform: scale(1); box-shadow: 0 0 5px rgba(255, 105, 180, 0.4); }
+            0% { transform: scale(1); box-shadow: 0 0 5px rgba(142, 68, 173, 0.4); }
+            50% { transform: scale(1.01); box-shadow: 0 0 10px rgba(142, 68, 173, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 0 5px rgba(142, 68, 173, 0.4); }
         }
         
-        /* Fade In for the beginning */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .miss {
-            color: #8e44ad; /* A longing purple */
+            color: #8e44ad;
             font-size: 1.1em;
             font-weight: bold;
             margin-top: 30px;
@@ -83,6 +85,47 @@
             background-color: #f7f3f9;
             text-align: center;
             animation: pulse 3s infinite alternate ease-in-out;
+            margin-bottom: 20px;
+        }
+        
+        /* Button Styles */
+        .button-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            color: white;
+            text-decoration: none;
+        }
+        .btn-yes {
+            background-color: #2ecc71;
+        }
+        .btn-yes:hover {
+            background-color: #27ae60;
+            transform: translateY(-1px);
+        }
+        .btn-no {
+            background-color: #e74c3c;
+        }
+        .btn-no:hover {
+            background-color: #c0392b;
+            transform: translateY(-1px);
+        }
+        #result-message {
+            margin-top: 15px;
+            font-style: italic;
+            color: #8e44ad;
+            text-align: center;
+            font-weight: bold;
+            min-height: 20px;
         }
     </style>
 </head>
@@ -115,12 +158,54 @@
         <p>But since very recently I don't feel that from you. I feel like you don't like to have me around, you don't like to even hold my hand. (Even when we hung out at the joint pub, I know you took really good care of me, but at the beginning it felt like you didn't give a damn about me. I'm so sorry for saying this).</p>
 
         <div class="miss">
-            Can you be like my **old kavi** please, I miss him. Can I have him back?
+            <span id="question-text">Can you be like my **old kavi** please, I miss him. Can I have him back?</span>
         </div>
+
+        <div class="button-container">
+            <button class="btn btn-yes" onclick="handleYesClick()">
+                Yes
+            </button>
+            
+            <button class="btn btn-no" onclick="handleNoClick()">
+                No
+            </button>
+        </div>
+
+        <div id="result-message"></div>
 
         <p style="text-align: center; margin-top: 20px;">I know I suck.</p>
 
         <p style="text-align: center; font-style: italic; color: #1e88e5;">Promise this will be the **last time**.</p>
     </div>
+
+    <script>
+        // NOTE: Remember to replace 'YOUR_EMAIL@example.com' with the correct email address!
+        const TARGET_EMAIL = 'heshanidharmarathne51@gmail.com';
+        
+        function handleYesClick() {
+            // 1. Launch Confetti!
+            confetti({
+                particleCount: 150,
+                spread: 120,
+                origin: { y: 0.6 } // Launch from the middle of the page vertically
+            });
+
+            // 2. Set the "Yes" response and launch email link after a short delay
+            document.getElementById('result-message').innerHTML = 'YES! That makes me so happy.';
+            
+            // Mailto link details
+            const subject = encodeURIComponent("Re: Your Message - Yes");
+            const body = encodeURIComponent("Yes, I want to be your old Kavi. \n\n[Please write your reply here]");
+            
+            // Redirect to mailto link
+            setTimeout(() => {
+                window.location.href = `mailto:${TARGET_EMAIL}?subject=${subject}&body=${body}`;
+            }, 500); // Small delay to let the confetti start
+        }
+
+        function handleNoClick() {
+            document.getElementById('result-message').innerHTML = 'I understand. Thank you for reading.';
+        }
+    </script>
 </body>
 </html>
