@@ -17,11 +17,11 @@
             background-color: #f4f4f9;
             color: #333;
             
-            /* **CRITICAL FIX:** Removed min-height: 100vh and complex flex settings. */
-            /* This ensures content flows naturally and scrolling is always possible. */
+            /* FINAL FIX: Ensure reliable scrolling */
             display: flex;
             flex-direction: column; 
             align-items: center; /* Keeps content centered horizontally */
+            /* All vertical centering/height commands removed */
         }
         .container {
             max-width: 600px;
@@ -31,7 +31,8 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 1px solid #ddd;
             transition: opacity 1s ease-out, transform 1s ease-out;
-            margin: 20px 0; /* Ensures space above and below the box, even if content is short */
+            margin-top: 20px; /* Space from the top of the browser */
+            margin-bottom: 20px; /* Space from the bottom of the browser */
         }
         h1 {
             color: #1e88e5;
