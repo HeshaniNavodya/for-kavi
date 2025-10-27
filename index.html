@@ -8,6 +8,11 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
     <style>
+        /* CRITICAL FIX FOR SCROLLING: Set the root elements to full height */
+        html {
+            height: 100%;
+        }
+
         /* General Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -17,11 +22,9 @@
             background-color: #f4f4f9;
             color: #333;
             
-            /* FINAL FIX: Ensure reliable scrolling */
-            display: flex;
-            flex-direction: column; 
-            align-items: center; /* Keeps content centered horizontally */
-            /* All vertical centering/height commands removed */
+            /* REMOVED: display: flex; and related vertical commands */
+            /* This ensures the browser handles flow and scrolling normally */
+            text-align: center; /* Center content horizontally */
         }
         .container {
             max-width: 600px;
@@ -31,8 +34,8 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 1px solid #ddd;
             transition: opacity 1s ease-out, transform 1s ease-out;
-            margin-top: 20px; /* Space from the top of the browser */
-            margin-bottom: 20px; /* Space from the bottom of the browser */
+            margin: 20px auto; /* Centers the container block and adds vertical space */
+            text-align: left; /* Restores text alignment inside the container */
         }
         h1 {
             color: #1e88e5;
@@ -221,9 +224,6 @@
             messageContainer.classList.add('fade-out-fall'); 
             
             document.querySelector('.button-container').style.display = 'none';
-
-            // No action needed after timeout, but the timeout is left for reference
-            // setTimeout(() => {}, 1000); 
         }
         
         // Ensure the correct email is set for the mailto link on page load
