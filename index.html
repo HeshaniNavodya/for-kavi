@@ -16,11 +16,12 @@
             padding: 20px;
             background-color: #f4f4f9;
             color: #333;
+            /* CRITICAL FIXES BELOW */
             display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden; /* Hide overflow during 'no' animation */
+            flex-direction: column; /* Stacks items vertically */
+            align-items: center; /* Centers container horizontally */
+            min-height: 100vh; /* Ensures it takes up at least full screen height */
+            /* Removed overflow: hidden; to allow scrolling */
         }
         .container {
             max-width: 600px;
@@ -29,7 +30,8 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 1px solid #ddd;
-            transition: opacity 1s ease-out, transform 1s ease-out; /* For 'no' animation */
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            margin: auto 0; /* Centers container vertically on short content */
         }
         h1 {
             color: #1e88e5;
@@ -194,13 +196,13 @@
         const TARGET_EMAIL = 'YOUR_EMAIL@example.com';
 
         function handleYesClick(event) {
-            event.preventDefault(); // Prevent default mailto action immediately
+            event.preventDefault(); 
             
             confetti({
                 particleCount: 150,
                 spread: 120,
                 origin: { y: 0.6 },
-                colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#ff9f00'] // Custom cute colors
+                colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#ff9f00'] 
             });
 
             document.getElementById('result-message').innerHTML = 'YES! That makes me so happy.';
@@ -212,22 +214,26 @@
 
         function handleNoClick() {
             const messageContainer = document.getElementById('messageContainer');
-            messageContainer.classList.add('fade-out-fall'); // Add the animation class
             
-            document.getElementById('result-message').innerHTML = 'I understand. Thank you for reading.';
-
-            // Optionally, hide or remove the buttons after interaction
+            // Add a small message instantly
+            document.getElementById('result-message').innerHTML = 'I understand. Thank you for reading. 💔';
+            
+            // Trigger the animation
+            messageContainer.classList.add('fade-out-fall'); 
+            
+            // Hide buttons
             document.querySelector('.button-container').style.display = 'none';
 
-            // After the animation finishes, you could potentially redirect or do something else
+            // After the animation finishes, you could optionally hide the result message too
             setTimeout(() => {
-                // For now, we'll just let it fade out.
-                // You could uncomment the line below to reload the page or navigate away
-                // window.location.reload(); 
-            }, 1000); // Matches the transition duration
+                // To keep the message from jumping after the animation, we'll keep the text
+                // If you wanted to hide the message fully, you'd use:
+                // messageContainer.style.display = 'none';
+            }, 1000); 
         }
         
         // Ensure the correct email is set for the mailto link on page load
+        // This makes sure the email address is used from the TARGET_EMAIL variable
         document.getElementById('yes-button').href = document.getElementById('yes-button').href.replace('YOUR_EMAIL@example.com', TARGET_EMAIL);
     </script>
 </body>
