@@ -3,61 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Message to Kavi ❤️</title>
+    <title>A Message to Kavi 💖 Animated</title>
     <style>
+        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            margin: 20px;
-            background-color: #f4f4f9;
-            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffeef2; /* Soft Pink Background */
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
             max-width: 600px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px; /* Softer edges */
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2); /* Pink shadow */
+            border: 3px solid #ffb6c1; /* Light Pink Border */
         }
         h1 {
-            color: #e91e63;
+            color: #ff69b4; /* Hot Pink */
             text-align: center;
-            border-bottom: 2px solid #ffc107;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            font-size: 1.8em;
+            margin-bottom: 25px;
         }
         p {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
-        .highlight {
-            font-style: italic;
-            color: #007bff;
-        }
+        /* Specific Text Styles */
         .apology {
             color: #dc3545;
-            font-weight: bold;
-        }
-        .miss {
-            color: #28a745;
-            font-size: 1.1em;
-            font-weight: bold;
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px dashed #28a745;
-            border-radius: 5px;
+            font-weight: 600;
+            padding: 10px 0;
+            border-top: 1px dashed #dc3545;
+            border-bottom: 1px dashed #dc3545;
+            margin: 20px 0;
         }
         .thanks {
             font-weight: bold;
             color: #ffc107;
+            background-color: #fff9e6;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+        .date {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #8a2be2; /* Blue-Violet */
+            /* Animation applied here */
+            animation: fadeIn 3s ease-out;
+            display: block;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* Cute Animation for the 'Miss Him' Box */
+        @keyframes pulse {
+            0% { transform: scale(1); background-color: #e6ffe6; box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); }
+            50% { transform: scale(1.02); background-color: #d1ffdb; box-shadow: 0 0 15px rgba(40, 167, 69, 0.8); }
+            100% { transform: scale(1); background-color: #e6ffe6; box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); }
+        }
+        
+        /* Simple Fade In for the beginning */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .miss {
+            color: #28a745;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 30px;
+            padding: 15px;
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            background-color: #e6ffe6;
+            text-align: center;
+            /* Apply the animation */
+            animation: pulse 3s infinite alternate ease-in-out;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>For My Kavi ✨</h1>
+        <h1>For My Kavi ✨💖</h1>
 
-        <p>2025.06.29/30 🗓️</p>
+        <p class="date">2025.06.29/30 🗓️</p>
 
         <p>I will never forget these dates. You were so **humble and gentle** with me, you made me feel **included** 🥰. You were really kind and you kept talking to me.</p>
 
@@ -67,7 +104,7 @@
 
         <p>I remember telling you that I needed to sit, you were rubbing my shoulder and massaging my head, I remember all that. <span class="thanks">2. Thanks for doing that</span>, I've never had such a thing in my lifeee. You took good care of me.</p>
 
-        <p>***</p>
+        <hr style="border: 0; border-top: 1px solid #ff69b4; margin: 25px 0;">
 
         <p class="apology">
             (Even though I blamed you and scolded you for kissing me without my consent... kissing you felt right for some reason. I **apologize** for blaming you for that, I apologize from the **bottom of my heart** 😔. I know I made a mistake.)
@@ -77,7 +114,7 @@
 
         <p>It really was a **good day** indeed, a **bestest day** for sure! 🌟</p>
 
-        <p>***</p>
+        <hr style="border: 0; border-top: 1px solid #ff69b4; margin: 25px 0;">
 
         <p>But since very recently I don't feel that from you 💔. I feel like you don't like to have me around, you don't like to even hold my hand 😔. (Even when we hung out at the joint pub, I know you took really good care of me, but at the beginning it felt like you didn't give a damn about me. Um so sorry for saying this 🙏).</p>
 
@@ -85,9 +122,9 @@
             Can you be like my **old kavi** please, I miss him. Can I have him back? 🫂
         </div>
 
-        <p>I know I suck. 😞</p>
+        <p style="text-align: center; margin-top: 20px;">I know I suck. 😞</p>
 
-        <p>Promise this will be the **last time**... 🤞</p>
+        <p style="text-align: center; font-style: italic; color: #ff69b4;">Promise this will be the **last time**... 🤞</p>
     </div>
 </body>
 </html>
