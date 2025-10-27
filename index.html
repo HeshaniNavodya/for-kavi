@@ -131,40 +131,43 @@
 </head>
 <body>
     <div class="container">
-        <h1>For My Kavi</h1>
+        <h1>For My Kavi 💌</h1>
 
-        <p class="date">2025.06.29/30</p>
+        <p class="date">2025.06.29/30 🗓️</p>
 
         <p>I will never forget these dates. You were so **humble and gentle** with me, you made me feel **included**. You were really kind and you kept talking to me.</p>
 
-        <p>After I got drunk (I don't know if I seemed drunk) you took my hand and rushed to the beach (I have no idea why you felt the need to rush).</p>
+        <p>After I got drunk (I don't know if I seemed drunk 😅) you took my hand and rushed to the beach (I have no idea why you felt the need to rush).</p>
 
-        <p>I remember resting my head on your chest... <span class="thanks">1. Thanks for letting me</span>, It felt like **heaven** for sure. I don't remember much of course but I remember you kissing my head, It felt better too.</p>
+        <p>I remember resting my head on your chest... <span class="thanks">1. Thanks for letting me</span>, It felt like **heaven** for sure 🥺. I don't remember much of course but I remember you kissing my head, It felt better too.</p>
 
         <p>I remember telling you that I needed to sit, you were rubbing my shoulder and massaging my head, I remember all that. <span class="thanks">2. Thanks for doing that</span>, I've never had such a thing in my life.</p>
 
         <hr style="border: 0; border-top: 1px solid #1e88e5; margin: 25px 0;">
 
         <p class="apology">
-            (Even though I blamed you and scolded you for kissing me without my consent... kissing you felt right for some reason. I **apologize** for blaming you for that, I apologize from the **bottom of my heart**. I know I made a mistake.)
+            (Even though I blamed you and scolded you for kissing me without my consent... kissing you felt right for some reason. I **apologize** for blaming you for that, I apologize from the **bottom of my heart** 😔. I know I made a mistake.)
         </p>
 
-        <p>Even after I vomited you carried me literally like a **princess**. I have no idea how to explain how that felt. <span class="thanks">3. Thanks for keeping me on your lap and letting me rest.</span></p>
+        <p>Even after I vomited you carried me literally like a **princess** 👑. I have no idea how to explain how that felt. <span class="thanks">3. Thanks for keeping me on your lap and letting me rest.</span></p>
 
-        <p>It really was a **good day** indeed, a **bestest day** for sure.</p>
+        <p>It really was a **good day** indeed, a **bestest day** for sure. 🌟</p>
 
         <hr style="border: 0; border-top: 1px solid #1e88e5; margin: 25px 0;">
 
-        <p>But since very recently I don't feel that from you. I feel like you don't like to have me around, you don't like to even hold my hand. (Even when we hung out at the joint pub, I know you took really good care of me, but at the beginning it felt like you didn't give a damn about me. I'm so sorry for saying this).</p>
+        <p>But since very recently I don't feel that from you 💔. I feel like you don't like to have me around, you don't like to even hold my hand. (Even when we hung out at the joint pub, I know you took really good care of me, but at the beginning it felt like you didn't give a damn about me. I'm so sorry for saying this 🙏).</p>
 
         <div class="miss">
-            <span id="question-text">Can you be like my **old kavi** please, I miss him. Can I have him back?</span>
+            <span id="question-text">Can you be like my **old kavi** please, I miss him. Can I have him back? 🫂</span>
         </div>
 
         <div class="button-container">
-            <button class="btn btn-yes" onclick="handleYesClick()">
+            <a id="yes-button"
+               href="mailto:YOUR_EMAIL@example.com?subject=Re%3A%20Your%20Message%20-%20Yes&body=Yes%2C%20I%20want%20to%20be%20your%20old%20Kavi.%20%0D%0A%0D%0A[Please%20write%20your%20reply%20here]" 
+               class="btn btn-yes"
+               onclick="handleYesClick(event)">
                 Yes
-            </button>
+            </a>
             
             <button class="btn btn-no" onclick="handleNoClick()">
                 No
@@ -173,39 +176,43 @@
 
         <div id="result-message"></div>
 
-        <p style="text-align: center; margin-top: 20px;">I know I suck.</p>
+        <p style="text-align: center; margin-top: 20px;">I know I suck. 😞</p>
 
-        <p style="text-align: center; font-style: italic; color: #1e88e5;">Promise this will be the **last time**.</p>
+        <p style="text-align: center; font-style: italic; color: #1e88e5;">Promise this will be the **last time**... 🤞</p>
     </div>
 
     <script>
         // NOTE: Remember to replace 'YOUR_EMAIL@example.com' with the correct email address!
-        const TARGET_EMAIL = 'heshanidharmarathne51@gmail.com';
-        
-        function handleYesClick() {
+        const TARGET_EMAIL = 'YOUR_EMAIL@example.com';
+
+        function handleYesClick(event) {
+            // Prevent the default mailto action temporarily
+            event.preventDefault(); 
+            
             // 1. Launch Confetti!
             confetti({
                 particleCount: 150,
                 spread: 120,
-                origin: { y: 0.6 } // Launch from the middle of the page vertically
+                origin: { y: 0.6 },
+                colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#ff9f00'] // Custom cute colors
             });
 
-            // 2. Set the "Yes" response and launch email link after a short delay
+            // 2. Set the "Yes" response message
             document.getElementById('result-message').innerHTML = 'YES! That makes me so happy.';
             
-            // Mailto link details
-            const subject = encodeURIComponent("Re: Your Message - Yes");
-            const body = encodeURIComponent("Yes, I want to be your old Kavi. \n\n[Please write your reply here]");
-            
-            // Redirect to mailto link
+            // 3. Manually trigger the mailto link after the confetti starts
             setTimeout(() => {
-                window.location.href = `mailto:${TARGET_EMAIL}?subject=${subject}&body=${body}`;
-            }, 500); // Small delay to let the confetti start
+                // Now we perform the action that was prevented
+                window.location.href = event.currentTarget.href; 
+            }, 500); 
         }
 
         function handleNoClick() {
             document.getElementById('result-message').innerHTML = 'I understand. Thank you for reading.';
         }
+        
+        // Ensure the correct email is set for the mailto link
+        document.getElementById('yes-button').href = document.getElementById('yes-button').href.replace('YOUR_EMAIL@example.com', TARGET_EMAIL);
     </script>
 </body>
 </html>
