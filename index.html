@@ -8,11 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
     <style>
-        /* CRITICAL FIX FOR SCROLLING: Set the root elements to full height */
-        html {
-            height: 100%;
-        }
-
         /* General Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,10 +16,10 @@
             padding: 20px;
             background-color: #f4f4f9;
             color: #333;
-            
-            /* REMOVED: display: flex; and related vertical commands */
-            /* This ensures the browser handles flow and scrolling normally */
-            text-align: center; /* Center content horizontally */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
             max-width: 600px;
@@ -33,9 +28,6 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 1px solid #ddd;
-            transition: opacity 1s ease-out, transform 1s ease-out;
-            margin: 20px auto; /* Centers the container block and adds vertical space */
-            text-align: left; /* Restores text alignment inside the container */
         }
         h1 {
             color: #1e88e5;
@@ -135,16 +127,10 @@
             font-weight: bold;
             min-height: 20px;
         }
-
-        /* 'No' button animation class */
-        .fade-out-fall {
-            opacity: 0;
-            transform: translateY(100px) scale(0.9);
-        }
     </style>
 </head>
 <body>
-    <div class="container" id="messageContainer">
+    <div class="container">
         <h1>For My Kavi 💌</h1>
 
         <p class="date">2025.06.29/30 🗓️</p>
@@ -200,33 +186,32 @@
         const TARGET_EMAIL = 'YOUR_EMAIL@example.com';
 
         function handleYesClick(event) {
+            // Prevent the default mailto action temporarily
             event.preventDefault(); 
             
+            // 1. Launch Confetti!
             confetti({
                 particleCount: 150,
                 spread: 120,
                 origin: { y: 0.6 },
-                colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#ff9f00'] 
+                colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#ff9f00'] // Custom cute colors
             });
 
+            // 2. Set the "Yes" response message
             document.getElementById('result-message').innerHTML = 'YES! That makes me so happy.';
             
+            // 3. Manually trigger the mailto link after the confetti starts
             setTimeout(() => {
+                // Now we perform the action that was prevented
                 window.location.href = event.currentTarget.href; 
             }, 500); 
         }
 
         function handleNoClick() {
-            const messageContainer = document.getElementById('messageContainer');
-            
-            document.getElementById('result-message').innerHTML = 'I understand. Thank you for reading. 💔';
-            
-            messageContainer.classList.add('fade-out-fall'); 
-            
-            document.querySelector('.button-container').style.display = 'none';
+            document.getElementById('result-message').innerHTML = 'I understand. Thank you for reading.';
         }
         
-        // Ensure the correct email is set for the mailto link on page load
+        // Ensure the correct email is set for the mailto link
         document.getElementById('yes-button').href = document.getElementById('yes-button').href.replace('YOUR_EMAIL@example.com', TARGET_EMAIL);
     </script>
 </body>
